@@ -42,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AList0.cs" />
+    <Compile Include="AList1.cs" />
+    <Compile Include="EmptyArrayEx.cs" />
+    <Compile Include="IList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
