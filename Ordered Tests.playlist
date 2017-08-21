@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="CollectionTests.CollectTests.TestToArray" /><Add Test="CollectionTests.CollectTests.TestSize" /><Add Test="CollectionTests.CollectTests.TestInit" /><Add Test="CollectionTests.CollectTests.TestGetExEmpty" /><Add Test="CollectionTests.CollectTests.TestGetExOutRange" /><Add Test="CollectionTests.CollectTests.TestClear" /></Playlist>

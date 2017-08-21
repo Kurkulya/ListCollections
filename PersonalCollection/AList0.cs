@@ -184,12 +184,10 @@ namespace PersonalCollection
                 throw new EmptyArrayEx();
 
             int res = 0;
-            int min = arr[0];
             for (int i = 0; i < arr.Length; i++)
             {
-                if (arr[i] < min)
+                if (arr[i] < arr[res])
                 {
-                    min = arr[i];
                     res = i;
                 }
             }
@@ -202,12 +200,10 @@ namespace PersonalCollection
                 throw new EmptyArrayEx();
 
             int res = 0;
-            int max = arr[0];
             for (int i = 0; i < arr.Length; i++)
             {
-                if (arr[i] > max)
+                if (arr[i] > arr[res])
                 {
-                    max = arr[i];
                     res = i;
                 }
             }

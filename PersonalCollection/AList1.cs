@@ -14,8 +14,7 @@ namespace PersonalCollection
         public void Init(int[] ini)
         {
             if (ini == null)
-            {
-                arr = new int[10];
+            {               
                 top = 0;
                 return;
             }
@@ -34,7 +33,6 @@ namespace PersonalCollection
 
         public void Clear()
         {
-            arr = new int[10];
             top = 0;
         }
 
@@ -70,8 +68,7 @@ namespace PersonalCollection
 
         public void AddEnd(int val)
         {
-            arr[top] = val;
-            top++;
+            arr[top++] = val;
         }
 
         public void AddPos(int pos, int val)
@@ -79,19 +76,11 @@ namespace PersonalCollection
             if (pos < 0 || pos > top)
                 throw new IndexOutOfRangeException();
 
-            top++;
-            for (int i = top - 1, j = i - 1; i >= 0; i--, j--)
+            for (int i = ++top - 1; i >= pos; i--)
             {
-                if (i != pos)
-                {
-                    arr[i] = arr[j];
-                }
-                else
-                {
-                    arr[i] = val;
-                    j++;
-                }
+                arr[i + 1] = arr[i];
             }
+            arr[pos] = val;
         }
 
         public int DelStart()
@@ -107,14 +96,15 @@ namespace PersonalCollection
             }
             return ret;
         }
+
         public int DelEnd()
         {
             if (top == 0)
                 throw new EmptyArrayEx();
 
-            top--;
-            return arr[top];
+            return arr[--top];
         }
+
         public int DelPos(int pos)
         {
             if (top == 0)
@@ -158,18 +148,17 @@ namespace PersonalCollection
             }
             return max;
         }
+
         public int MinPos()
         {
             if (top == 0)
                 throw new EmptyArrayEx();
 
             int res = 0;
-            int min = arr[0];
             for (int i = 0; i < top; i++)
             {
-                if (arr[i] < min)
+                if (arr[i] < arr[res])
                 {
-                    min = arr[i];
                     res = i;
                 }
             }
@@ -182,17 +171,14 @@ namespace PersonalCollection
                 throw new EmptyArrayEx();
 
             int res = 0;
-            int max = arr[0];
             for (int i = 0; i < top; i++)
             {
-                if (arr[i] > max)
+                if (arr[i] > arr[res])
                 {
-                    max = arr[i];
                     res = i;
                 }
             }
             return res;
-
         }
 
         public void Set(int pos, int val)
@@ -204,6 +190,7 @@ namespace PersonalCollection
 
             arr[pos] = val;
         }
+
         public int Get(int pos)
         {
             if (top == 0)
@@ -233,9 +220,9 @@ namespace PersonalCollection
                 step /= 2;
             }
         }
+
         public void Reverse()
         {
-
             for (int i = 0; i < top / 2; i++)
             {
                 int temp = arr[i];
@@ -243,6 +230,7 @@ namespace PersonalCollection
                 arr[top - 1 - i] = temp;
             }
         }
+
         public void HalfReverse()
         {
             for (int j = 0; j < top / 2; j++)
