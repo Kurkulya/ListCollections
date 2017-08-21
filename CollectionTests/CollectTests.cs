@@ -7,7 +7,9 @@ namespace CollectionTests
     [TestClass]
     public class CollectTests
     {
-        IList lst = new AList1();
+        IList lst = new LList1();
+
+        //Initialize
 
         [DataTestMethod]
         [DataRow(null, new int[] { })]
