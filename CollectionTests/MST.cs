@@ -40,6 +40,14 @@ namespace CollectionTests
         }
     }
 
+    [TestClass]
+    public class TestLList2 : MSTests
+    {
+        internal override IList MakeList()
+        {
+            return new AList2();
+        }
+    }
 
     [TestClass]
     public abstract class MSTests
