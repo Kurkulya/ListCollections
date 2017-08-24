@@ -41,7 +41,7 @@ namespace PersonalCollection
             else
             {
                 Node newNode = new Node(val);
-                end.next = new Node(val);
+                end.next = newNode;
                 newNode.prev = end;
                 end = newNode;
             }
@@ -178,14 +178,15 @@ namespace PersonalCollection
             if (Size() == 1 || Size() == 0)
                 return;
 
-            Node cur = end;
-            Node mid = GetNode(Size() / 2 - 1);
-            cur.next = start;
-            start.prev = cur;
-            start = mid.next;
-            mid.next.prev = null;
-            mid.next = null;
-            end = mid;
+            Node newEnd = GetNode(Size() / 2 - 1);
+            Node newStart = GetNode(Size() / 2 );
+            start.prev = end;
+            end.next = start;            
+            newEnd.next = null;
+            newStart.prev = null;
+            end = newEnd;
+            start = newStart;
+
         }
 
         public void Init(int[] ini)
