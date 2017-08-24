@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PersonalCollection
 {
-    public class AList2 : IList
+    public class AList2 : IListMemory
     {
         int[] arr = new int[30];
         int start = 15;
@@ -14,6 +14,9 @@ namespace PersonalCollection
 
         public void AddEnd(int val)
         {
+            if (end == arr.Length - 1)
+                ExtendArray(arr.Length);
+
             arr[end++] = val;
         }
 
@@ -21,6 +24,9 @@ namespace PersonalCollection
         {
             if (pos < 0 || pos > end - start)
                 throw new IndexOutOfRangeException();
+
+            if ( end == arr.Length - 1)
+                ExtendArray(arr.Length);
 
             for (int i = ++end - 1; i >= pos + start; i--)
             {
@@ -31,6 +37,9 @@ namespace PersonalCollection
 
         public void AddStart(int val)
         {
+            if (start == 0)
+                ExtendArray(arr.Length);
+
             arr[--start] = val;
         }
 
@@ -73,6 +82,28 @@ namespace PersonalCollection
             return arr[start++];
         }
 
+        public void ExtendArray(int size)
+        {
+            double new_size = size * 1.3;
+            double slide_left = size * 0.15;
+            int[] temp = new int[(int)new_size];
+            for (int i = 0, j = (int)slide_left; i < arr.Length; ++i, ++j)
+            {
+                temp[j] = arr[i];
+            }
+            if (start == end)
+            {
+                start = temp.Length / 2;
+                end = temp.Length / 2;
+            }
+            if (start == 0 || end == arr.Length - 1)
+            {
+                start += (int)slide_left;
+                end += (int)slide_left;
+            }
+            arr = temp;
+        }
+
         public int Get(int pos)
         {
             if (end - start == 0)
@@ -104,7 +135,10 @@ namespace PersonalCollection
                 end = 15;
                 return;
             }
-           
+
+            if (ini.Length > arr.Length)
+                ExtendArray(ini.Length);
+
             start -= ini.Length / 2;
             end += ini.Length - (ini.Length / 2);
             for (int i = start; i < end; i++)

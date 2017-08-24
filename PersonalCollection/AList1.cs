@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PersonalCollection
 {
-    public class AList1 : IList
+    public class AList1 : IListMemory
     {
         int[] arr = new int[10];
         int top = 0;
@@ -18,6 +18,9 @@ namespace PersonalCollection
                 top = 0;
                 return;
             }
+            top = ini.Length;
+            if (top >= arr.Length)
+                ExtendArray(top);
 
             for (int i = 0; i < ini.Length; i++)
             {
@@ -58,6 +61,9 @@ namespace PersonalCollection
 
         public void AddStart(int val)
         {
+            if (top + 1 > Size())
+                ExtendArray(arr.Length);
+
             for (int i = top; i != 0; i--)
             {
                 arr[i] = arr[i - 1];
@@ -68,6 +74,9 @@ namespace PersonalCollection
 
         public void AddEnd(int val)
         {
+            if (top + 1 > Size())
+                ExtendArray(arr.Length);
+
             arr[top++] = val;
         }
 
@@ -75,6 +84,9 @@ namespace PersonalCollection
         {
             if (pos < 0 || pos > top)
                 throw new IndexOutOfRangeException();
+
+            if (top + 1 > Size())
+                ExtendArray(arr.Length);
 
             for (int i = ++top - 1; i >= pos; i--)
             {
@@ -242,6 +254,17 @@ namespace PersonalCollection
                 }
                 arr[top - 1] = temp;
             }
+        }
+
+        public void ExtendArray(int size)
+        {
+            double new_size = size * 1.3;
+            int[] temp = new int[(int)new_size];
+            for (int i = 0; i < arr.Length; ++i)
+            {
+                temp[i] = arr[i];
+            }
+            arr = temp;
         }
     }
 }
