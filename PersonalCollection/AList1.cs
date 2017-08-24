@@ -19,7 +19,7 @@ namespace PersonalCollection
                 return;
             }
             top = ini.Length;
-            if (top >= arr.Length)
+            if (top > arr.Length)
                 ExtendArray(top);
 
             for (int i = 0; i < ini.Length; i++)
@@ -37,6 +37,7 @@ namespace PersonalCollection
         public void Clear()
         {
             top = 0;
+            arr = new int[10];
         }
 
         public override String ToString()

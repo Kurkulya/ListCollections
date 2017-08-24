@@ -8,13 +8,13 @@ namespace PersonalCollection
 {
     public class AList2 : IListMemory
     {
-        int[] arr = new int[30];
-        int start = 15;
-        int end = 15;
+        int[] arr = new int[10];
+        int start = 5;
+        int end = 5;
 
         public void AddEnd(int val)
         {
-            if (end == arr.Length - 1)
+            if (end + 1 > arr.Length)
                 ExtendArray(arr.Length);
 
             arr[end++] = val;
@@ -25,10 +25,10 @@ namespace PersonalCollection
             if (pos < 0 || pos > end - start)
                 throw new IndexOutOfRangeException();
 
-            if ( end == arr.Length - 1)
+            if (end + 1 > arr.Length)
                 ExtendArray(arr.Length);
 
-            for (int i = ++end - 1; i >= pos + start; i--)
+            for (int i = end++ - 1; i >= pos + start; i--)
             {
                 arr[i + 1] = arr[i];
             }
@@ -45,8 +45,9 @@ namespace PersonalCollection
 
         public void Clear()
         {
-            start = 15;
-            end = 15;
+            start = 5;
+            end = 5;
+            arr = new int[10];
         }
 
         public int DelEnd()
@@ -84,22 +85,23 @@ namespace PersonalCollection
 
         public void ExtendArray(int size)
         {
-            double new_size = size * 1.3;
-            double slide_left = size * 0.15;
-            int[] temp = new int[(int)new_size];
-            for (int i = 0, j = (int)slide_left; i < arr.Length; ++i, ++j)
-            {
-                temp[j] = arr[i];
-            }
+            int new_size = (int)(size * 1.3);
+            int[] temp = new int[new_size];
             if (start == end)
             {
-                start = temp.Length / 2;
-                end = temp.Length / 2;
+                start = new_size / 2;
+                end = new_size / 2;
             }
-            if (start == 0 || end == arr.Length - 1)
+            else
             {
-                start += (int)slide_left;
-                end += (int)slide_left;
+                int nStart = temp.Length / 2 - Size() / 2;
+                int nEnd = nStart + Size();
+                for (int i = start, j = nStart; i < end; i++, j++)
+                {
+                    temp[j] = arr[i];
+                }
+                start = nStart;
+                end = nEnd;
             }
             arr = temp;
         }
@@ -131,8 +133,8 @@ namespace PersonalCollection
         {
             if(ini == null)
             {
-                start = 15;
-                end = 15;
+                start = 5;
+                end = 5;
                 return;
             }
 

@@ -52,11 +52,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdditionalTests.cs" />
+    <Compile Include="MSAdditionalTests.cs" />
     <Compile Include="ComplexMSTests.cs" />
     <Compile Include="ComplexNUnitTests.cs" />
     <Compile Include="NUnit.cs" />
     <Compile Include="MST.cs" />
+    <Compile Include="NUnitAdditionalTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

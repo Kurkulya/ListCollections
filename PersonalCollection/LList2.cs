@@ -186,7 +186,6 @@ namespace PersonalCollection
             newStart.prev = null;
             end = newEnd;
             start = newStart;
-
         }
 
         public void Init(int[] ini)
