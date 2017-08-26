@@ -257,15 +257,13 @@ namespace PersonalCollection
             }
         }
         public void HalfReverse()
-        { 
-            for (int j = 0; j < arr.Length / 2; j++)
+        {
+            int mid = (arr.Length % 2 == 0) ? arr.Length / 2 : arr.Length / 2 + 1;
+            for (int i = 0; i < arr.Length / 2; i++)
             {
-                int temp = arr[0];
-                for (int i = 0; i < arr.Length - 1; i++)
-                {
-                    arr[i] = arr[i + 1];
-                }
-                arr[arr.Length - 1] = temp;
+                int temp = arr[i];
+                arr[i] = arr[i + mid];
+                arr[i + mid] = temp;
             }
         }
     }

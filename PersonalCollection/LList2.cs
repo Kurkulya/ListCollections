@@ -178,14 +178,30 @@ namespace PersonalCollection
             if (Size() == 1 || Size() == 0)
                 return;
 
-            Node newEnd = GetNode(Size() / 2 - 1);
-            Node newStart = GetNode(Size() / 2 );
+            Node mid = GetNode(Size() / 2 - 1);
+            if (Size() % 2 != 0)
+            {
+                mid.next.prev = end;
+                end.next = mid.next;
+                mid.next.next.prev = mid;
+                mid.next = mid.next.next;
+                end = end.next;
+            }
             start.prev = end;
-            end.next = start;            
-            newEnd.next = null;
-            newStart.prev = null;
-            end = newEnd;
-            start = newStart;
+            end.next = start;
+            start = mid.next;
+            end = mid;
+            end.next.prev = null;
+            end.next = null;
+
+            //only values
+            //int mid = (Size() % 2 == 0) ? Size() / 2 : Size() / 2 + 1;
+            //for (int i = 0; i < Size() / 2; i++)
+            //{
+            //    int temp = Get(i);
+            //    Set(i, Get(i + mid));
+            //    Set(i + mid, temp);
+            //}
         }
 
         public void Init(int[] ini)
@@ -278,10 +294,18 @@ namespace PersonalCollection
                 cur.prev = tempCur;
                 cur = cur.prev;
             }
-
             Node temp = end;
             end = start;
             start = temp;
+
+
+            //only values
+            //for (int i = 0; i < Size() / 2; i++)
+            //{
+            //    int temp = Get(i);
+            //    Set(i, Get(Size() - 1 - i));
+            //    Set(Size() - 1 - i, temp);
+            //}
         }
 
         public void Set(int pos, int val)

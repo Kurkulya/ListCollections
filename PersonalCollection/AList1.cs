@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PersonalCollection
 {
-    public class AList1 : IListMemory
+    public class AList1 : IList
     {
         int[] arr = new int[10];
         int top = 0;
@@ -62,7 +62,7 @@ namespace PersonalCollection
 
         public void AddStart(int val)
         {
-            if (top + 1 > Size())
+            if (top + 1 > arr.Length)
                 ExtendArray(arr.Length);
 
             for (int i = top; i != 0; i--)
@@ -75,7 +75,7 @@ namespace PersonalCollection
 
         public void AddEnd(int val)
         {
-            if (top + 1 > Size())
+            if (top + 1 > arr.Length)
                 ExtendArray(arr.Length);
 
             arr[top++] = val;
@@ -86,10 +86,10 @@ namespace PersonalCollection
             if (pos < 0 || pos > top)
                 throw new IndexOutOfRangeException();
 
-            if (top + 1 > Size())
+            if (top + 1 > arr.Length)
                 ExtendArray(arr.Length);
 
-            for (int i = ++top - 1; i >= pos; i--)
+            for (int i = top++ - 1; i >= pos; i--)
             {
                 arr[i + 1] = arr[i];
             }
@@ -246,18 +246,16 @@ namespace PersonalCollection
 
         public void HalfReverse()
         {
-            for (int j = 0; j < top / 2; j++)
+            int mid = (top % 2 == 0) ? top / 2 : top / 2 + 1;
+            for (int i = 0; i < top / 2; i++)
             {
-                int temp = arr[0];
-                for (int i = 0; i < top - 1; i++)
-                {
-                    arr[i] = arr[i + 1];
-                }
-                arr[top - 1] = temp;
+                int temp = arr[i];
+                arr[i] = arr[i + mid];
+                arr[i + mid] = temp;
             }
         }
 
-        public void ExtendArray(int size)
+        private void ExtendArray(int size)
         {
             double new_size = size * 1.3;
             int[] temp = new int[(int)new_size];

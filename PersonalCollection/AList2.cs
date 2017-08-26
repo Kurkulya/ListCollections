@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PersonalCollection
 {
-    public class AList2 : IListMemory
+    public class AList2 : IList
     {
         int[] arr = new int[10];
         int start = 5;
@@ -14,7 +14,9 @@ namespace PersonalCollection
 
         public void AddEnd(int val)
         {
-            if (end + 1 > arr.Length)
+            if (end == arr.Length && start != 0)
+                ShiftToLeft();
+            else if (Size() == arr.Length)
                 ExtendArray(arr.Length);
 
             arr[end++] = val;
@@ -25,7 +27,9 @@ namespace PersonalCollection
             if (pos < 0 || pos > end - start)
                 throw new IndexOutOfRangeException();
 
-            if (end + 1 > arr.Length)
+            if (end == arr.Length && start != 0)
+                ShiftToLeft();
+            else if(Size() == arr.Length)
                 ExtendArray(arr.Length);
 
             for (int i = end++ - 1; i >= pos + start; i--)
@@ -37,7 +41,9 @@ namespace PersonalCollection
 
         public void AddStart(int val)
         {
-            if (start == 0)
+            if (start == 0 && end != arr.Length)
+                ShiftToRight();
+            else if(Size() == arr.Length)
                 ExtendArray(arr.Length);
 
             arr[--start] = val;
@@ -83,7 +89,7 @@ namespace PersonalCollection
             return arr[start++];
         }
 
-        public void ExtendArray(int size)
+        private void ExtendArray(int size)
         {
             int new_size = (int)(size * 1.3);
             int[] temp = new int[new_size];
@@ -92,7 +98,7 @@ namespace PersonalCollection
                 start = new_size / 2;
                 end = new_size / 2;
             }
-            else
+            else if(start == 0 && end == arr.Length)
             {
                 int nStart = temp.Length / 2 - Size() / 2;
                 int nEnd = nStart + Size();
@@ -101,9 +107,27 @@ namespace PersonalCollection
                     temp[j] = arr[i];
                 }
                 start = nStart;
-                end = nEnd;
+                end = nEnd;                
             }
             arr = temp;
+        }
+
+        private void ShiftToRight()
+        {
+            start++;
+            for (int i = ++end; i > start; i++)
+            {
+                arr[i] = arr[i - 1];
+            }
+        }
+
+        private void ShiftToLeft()
+        {
+            end--;
+            for (int i = --start; i < end; i++)
+            {
+                arr[i] = arr[i + 1];
+            }
         }
 
         public int Get(int pos)
@@ -118,14 +142,12 @@ namespace PersonalCollection
 
         public void HalfReverse()
         {
-            for (int j = start; j < start + (end - start) / 2; j++)
+            int mid = (Size() % 2 == 0) ? Size() / 2 : Size() / 2 + 1;
+            for (int i = start; i < start + Size() / 2; i++)
             {
-                int temp = arr[start];
-                for (int i = start; i < end - 1; i++)
-                {
-                    arr[i] = arr[i + 1];
-                }
-                arr[end - 1] = temp;
+                int temp = arr[i];
+                arr[i] = arr[i + mid];
+                arr[i + mid] = temp;
             }
         }
 
@@ -211,11 +233,11 @@ namespace PersonalCollection
 
         public void Reverse()
         {
-            for (int i = start, j = end - 1; i < start + (end - start) / 2; i++, j--)
+            for (int i = start; i < start + Size() / 2; i++)
             {
                 int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
+                arr[i] = arr[end - 1 - (i - start)];
+                arr[end - 1 - (i - start)] = temp;
             }
         }
 

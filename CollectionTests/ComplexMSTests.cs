@@ -155,9 +155,9 @@ namespace ArrayListTests
 
         [DataTestMethod]
         [DataRow(new int[] { 1 }, 5, new int[] { 5, 1 })]
-        [DataRow(new int[] { 1, 2 }, -3, new int[] { 2, -3, 1 })]
+        [DataRow(new int[] { 1, 2 }, -3, new int[] { -3, 2, 1 })]
         [DataRow(new int[] { 1, 2, 3 }, 0, new int[] { 3, 0, 1, 2 })]
-        [DataRow(new int[] { 1, 2, 3, 4, 5 }, 4, new int[] { 4, 5, 4, 1, 2, 3 })]
+        [DataRow(new int[] { 1, 2, 3, 4}, 4, new int[] {4,4,3,1,2})]
         [DataRow(new int[] { 5, -5, 17, 21, 86, -153, 390 }, -3, new int[] { 86, -153, 390, -3, 5, -5, 17, 21 })]
         public void TestAddEndHalfReverse(int[] ini, int val, int[] exp)
         {
@@ -172,7 +172,6 @@ namespace ArrayListTests
 
         [DataTestMethod]
         [DataRow(new int[] { 1, 5 }, 0, new int[] { 5 })]
-        [DataRow(new int[] { 1, 2 }, 1, new int[] { 1 })]
         [DataRow(new int[] { 1, 2, 3 }, 2, new int[] { 1, 2 })]
         [DataRow(new int[] { 1, -2, 3, 0, 5 }, 1, new int[] { 0, 1, 3, 5 })]
         [DataRow(new int[] { 5, -5, 17, 21, 86, -153, 390 }, 6, new int[] { -153, -5, 5, 17, 21, 86 })]
@@ -190,7 +189,6 @@ namespace ArrayListTests
 
         [DataTestMethod]
         [DataRow(new int[] { 1, 5 }, new int[] { 5 })]
-        [DataRow(new int[] { 1, 2 }, new int[] { 2 })]
         [DataRow(new int[] { 1, 2, 3 }, new int[] { 3, 2 })]
         [DataRow(new int[] { 1, 2, 3, 4, 5 }, new int[] { 5, 4, 3, 2 })]
         [DataRow(new int[] { 5, -5, 17, 21, 86, -153, 390 }, new int[] { 390, -153, 86, 21, 17, -5 })]
@@ -208,10 +206,9 @@ namespace ArrayListTests
 
         [DataTestMethod]
         [DataRow(new int[] { 1, 5 }, new int[] { 1 })]
-        [DataRow(new int[] { 1, 2 }, new int[] { 1 })]
         [DataRow(new int[] { 1, 2, 3 }, new int[] { 2, 1 })]
-        [DataRow(new int[] { 1, 2, 3, 4, 5 }, new int[] { 3, 4, 1, 2 })]
-        [DataRow(new int[] { 5, -5, 17, 21, 86, -153, 390 }, new int[] { 21, 86, -153, 5, -5, 17 })]
+        [DataRow(new int[] { 1, 2, 3, 4 }, new int[] { 3, 2, 1 })]
+        [DataRow(new int[] { 5, -5, 17, 21, 86, -153}, new int[] { 21, 86, 17, 5, -5})]
         public void TestDelEndHalfReverse(int[] ini, int[] exp)
         {
             lst.Init(ini);

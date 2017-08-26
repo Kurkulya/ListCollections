@@ -20,6 +20,17 @@ namespace PersonalCollection
 
         Node root = null;
 
+
+        private Node GetNode(int pos)
+        {
+            Node p = root;
+            for (int i = 0; i < pos; i++)
+            {
+                p = p.next;
+            }
+            return p;
+        }
+
         public void AddEnd(int val)
         {
             if (Size() == 0)
@@ -28,12 +39,7 @@ namespace PersonalCollection
             }
             else
             {
-                Node cur = root;
-                while (cur.next != null)
-                {
-                    cur = cur.next;
-                }
-                cur.next = new Node(val);
+                GetNode(Size() - 1).next = new Node(val);
             }
         }
 
@@ -52,11 +58,7 @@ namespace PersonalCollection
             }
             else
             {
-                Node cur = root;
-                for (int i = 0; i < pos - 1; i++)
-                {
-                    cur = cur.next;
-                }
+                Node cur = GetNode(pos - 1);
                 Node newNode = new Node(val);
                 newNode.next = cur.next;
                 cur.next = newNode;
@@ -90,11 +92,7 @@ namespace PersonalCollection
             }
             else
             {
-                Node cur = root;
-                while (cur.next.next != null)
-                {
-                    cur = cur.next;
-                }
+                Node cur = GetNode(Size() - 2);
                 ret = cur.next.val;
                 cur.next = null;
             }
@@ -119,11 +117,7 @@ namespace PersonalCollection
             }
             else
             {
-                Node cur = root;
-                for (int i = 0; i != pos - 1; i++)
-                {
-                    cur = cur.next;
-                }
+                Node cur = GetNode(pos - 1);
                 ret = cur.next.val;
                 cur.next = cur.next.next;
             }
@@ -153,12 +147,7 @@ namespace PersonalCollection
             if (pos < 0 || pos > Size() - 1)
                 throw new IndexOutOfRangeException();
 
-            Node cur = root;
-            for (int i = 0; i != pos; i++)
-            {
-                cur = cur.next;
-            }
-            return cur.val;
+            return GetNode(pos).val;
         }
 
         public void HalfReverse()
@@ -166,19 +155,26 @@ namespace PersonalCollection
             if (Size() == 1 || Size() == 0)
                 return;
 
-            Node cur = root;
-            while (cur.next != null)
+            Node cur = GetNode(Size() - 1);
+            Node mid = GetNode(Size() / 2 - 1);
+            if (Size() % 2 != 0)
             {
+                cur.next = mid.next;
+                mid.next = mid.next.next;
                 cur = cur.next;
-            }
-            Node mid = root;
-            for (int i = 0; i < Size() / 2 - 1; i++)
-            {
-                mid = mid.next;
             }
             cur.next = root;
             root = mid.next;
             mid.next = null;
+
+            //only values
+            //int mid = (Size() % 2 == 0) ? Size() / 2 : Size() / 2 + 1;
+            //for (int i = 0; i < Size() / 2; i++)
+            //{
+            //    int temp = Get(i);
+            //    Set(i, Get(i + mid));
+            //    Set(i + mid, temp);
+            //}
         }
 
         public void Init(int[] ini)
@@ -263,11 +259,7 @@ namespace PersonalCollection
             if (Size() == 1 || Size() == 0)
                 return;
 
-            Node end = root;
-            while (end.next != null)
-            {
-                end = end.next;
-            }
+            Node end = GetNode(Size() - 1);
             Node newRoot = end;
             while (end != root)
             {
@@ -281,6 +273,14 @@ namespace PersonalCollection
             }
             root.next = null;
             root = newRoot;
+
+            //only values
+            //for (int i = 0; i < Size() / 2; i++)
+            //{
+            //    int temp = Get(i);
+            //    Set(i, Get(Size() - 1 - i));
+            //    Set(Size() - 1 - i, temp);
+            //}
         }
 
         public void Set(int pos, int val)
@@ -290,12 +290,7 @@ namespace PersonalCollection
             if (pos < 0 || pos > Size() - 1)
                 throw new IndexOutOfRangeException();
 
-            Node cur = root;
-            for (int i = 0; i != pos; i++)
-            {
-                cur = cur.next;
-            }
-            cur.val = val;
+            GetNode(pos).val = val;
         }
 
         public int Size()

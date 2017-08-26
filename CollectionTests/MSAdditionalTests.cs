@@ -11,7 +11,7 @@ namespace CollectionTests
     [TestClass]
     public class TestAList1Add : MSAddingTests
     {
-        internal override IListMemory MakeList()
+        internal override IList MakeList()
         {
             return new AList1();
         }
@@ -20,7 +20,7 @@ namespace CollectionTests
     [TestClass]
     public class TestAList2Add : MSAddingTests
     {
-        internal override IListMemory MakeList()
+        internal override IList MakeList()
         {
             return new AList2();
         }
@@ -28,8 +28,8 @@ namespace CollectionTests
     [TestClass]
     public abstract class MSAddingTests
     {
-        internal abstract IListMemory MakeList();
-        IListMemory lst;
+        internal abstract IList MakeList();
+        IList lst;
         public MSAddingTests()
         {
             lst = MakeList();
@@ -59,8 +59,8 @@ namespace CollectionTests
         }
 
         [DataTestMethod]
-        [DataRow(new int[] {1,2,3,4,5,6,7,8,9,10}, new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10 , 11})]
-        [DataRow(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,11 })]
+        [DataRow(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 })]
+        [DataRow(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 11 })]
         [DataRow(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15 }, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12,13,14,15,11 })]
         public void TestAddEndOverflow(int[] ini, int[] exp)
         {
@@ -73,7 +73,7 @@ namespace CollectionTests
 
         [DataTestMethod]
         [DataRow(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, new int[] {11, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10})]
-        [DataRow(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 }, new int[] { 11, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11})]
+        [DataRow(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9,}, new int[] { 11, 1, 2, 3, 4, 5, 6, 7, 8, 9})]
         [DataRow(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 }, new int[] {11, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15})]
         public void TestAddStartOverflow(int[] ini, int[] exp)
         {
@@ -86,7 +86,7 @@ namespace CollectionTests
 
         [DataTestMethod]
         [DataRow(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, new int[] { 1, 2, 3, 4, 5, 11, 6, 7, 8, 9, 10 })]
-        [DataRow(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 }, new int[] { 1, 2, 3, 4, 5, 11, 6, 7, 8, 9, 10, 11 })]
+        [DataRow(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new int[] { 1, 2, 3, 4, 5, 11, 6, 7, 8, 9 })]
         [DataRow(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 }, new int[] { 1, 2, 3, 4, 5, 11, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 })]
         public void TestAddPosOverflow(int[] ini, int[] exp)
         {

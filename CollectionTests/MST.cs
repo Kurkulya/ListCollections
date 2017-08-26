@@ -462,7 +462,7 @@ namespace CollectionTests
         [DataRow(new int[] { }, new int[] { })]
         [DataRow(new int[] { 2 }, new int[] { 2 })]
         [DataRow(new int[] { 12, 3 }, new int[] { 3, 12 })]
-        [DataRow(new int[] { 2, 1, 0, 80, -15, 9, 5 }, new int[] { 80, -15, 9, 5, 2, 1, 0 })]
+        [DataRow(new int[] { 2, 1, 0, 80, -15, 9, 5 }, new int[] { -15, 9, 5, 80, 2, 1, 0 })]
         public void TestHalfReverse(int[] arr, int[] res)
         {
             
