@@ -16,6 +16,7 @@ namespace CollectionTests
     [TestFixture(typeof(LList1))]
     [TestFixture(typeof(LList2))]
     [TestFixture(typeof(LListR))]
+    [TestFixture(typeof(AListR))]
     public class NUnitTests<TPage> where TPage : IList, new()
     {
         IList lst = new TPage();

@@ -45,6 +45,7 @@
     <Compile Include="AList0.cs" />
     <Compile Include="AList1.cs" />
     <Compile Include="AList2.cs" />
+    <Compile Include="AListR.cs" />
     <Compile Include="EmptyArrayEx.cs" />
     <Compile Include="IList.cs" />
     <Compile Include="LList1.cs" />

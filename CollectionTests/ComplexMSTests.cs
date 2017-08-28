@@ -69,6 +69,15 @@ namespace ArrayListTests
     }
 
     [TestClass]
+    public class ComplexTestAListR : ComplexMSTests
+    {
+        internal override IList MakeList()
+        {
+            return new AListR();
+        }
+    }
+
+    [TestClass]
     public abstract class ComplexMSTests
     {
         internal abstract IList MakeList();

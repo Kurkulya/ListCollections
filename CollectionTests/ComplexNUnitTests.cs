@@ -11,6 +11,7 @@ namespace CollectionTests
     [TestFixture(typeof(LList1))]
     [TestFixture(typeof(LList2))]
     [TestFixture(typeof(LListR))]
+    [TestFixture(typeof(AListR))]
     public class ComplexTestsNUnit<TPage> where TPage : IList, new()
     {
         IList lst = new TPage();

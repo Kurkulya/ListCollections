@@ -25,6 +25,16 @@ namespace CollectionTests
             return new AList2();
         }
     }
+
+    [TestClass]
+    public class TestAListRAdd : MSAddingTests
+    {
+        internal override IList MakeList()
+        {
+            return new AListR();
+        }
+    }
+
     [TestClass]
     public abstract class MSAddingTests
     {

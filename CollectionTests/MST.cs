@@ -59,6 +59,15 @@ namespace CollectionTests
     }
 
     [TestClass]
+    public class TestAListR : MSTests
+    {
+        internal override IList MakeList()
+        {
+            return new AListR();
+        }
+    }
+
+    [TestClass]
     public abstract class MSTests
     {  
         IList lst;
