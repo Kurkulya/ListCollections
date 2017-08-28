@@ -36,7 +36,7 @@ namespace CollectionTests
     {
         internal override IList MakeList()
         {
-            return new AList2();
+            return new LList1();
         }
     }
 
@@ -45,7 +45,16 @@ namespace CollectionTests
     {
         internal override IList MakeList()
         {
-            return new AList2();
+            return new LList2();
+        }
+    }
+
+    [TestClass]
+    public class TestLListR : MSTests
+    {
+        internal override IList MakeList()
+        {
+            return new LListR();
         }
     }
 
