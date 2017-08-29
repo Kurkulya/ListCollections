@@ -68,6 +68,15 @@ namespace CollectionTests
     }
 
     [TestClass]
+    public class TestLListF : MSTests
+    {
+        internal override IList MakeList()
+        {
+            return new LListF();
+        }
+    }
+
+    [TestClass]
     public abstract class MSTests
     {  
         IList lst;

@@ -2,17 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PersonalCollection;
 
-namespace ArrayListTests
+namespace CollectionTests
 {
-    //а) Min, Max, MinPos, MaxPos
-    //b) Get, Set
-    //c) AddPos, Sort
-    //d) AddBegin, Reverse
-    //e) AddEnd, HalfReverse
-    //f) DelPos, Sort
-    //g) DelBegin, Reverse
-    //h) DelEnd, HalfReverse
-    // 7-10 тестов
+
 
     [TestClass]
     public class ComplexTestAList0 : ComplexMSTests
@@ -78,11 +70,20 @@ namespace ArrayListTests
     }
 
     [TestClass]
+    public class ComplexTestLListF : ComplexMSTests
+    {
+        internal override IList MakeList()
+        {
+            return new LListF();
+        }
+    }
+
+    [TestClass]
     public abstract class ComplexMSTests
     {
         internal abstract IList MakeList();
 
-        IList lst;
+        IList lst = null;
 
         public ComplexMSTests()
         {

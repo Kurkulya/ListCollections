@@ -50,6 +50,7 @@
     <Compile Include="IList.cs" />
     <Compile Include="LList1.cs" />
     <Compile Include="LList2.cs" />
+    <Compile Include="LListF.cs" />
     <Compile Include="LListR.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,13 +5,14 @@ using System.Collections.Generic;
 
 namespace CollectionTests
 {
+    [TestFixture(typeof(LListF))]
     [TestFixture(typeof(AList0))]
     [TestFixture(typeof(AList1))]
     [TestFixture(typeof(AList2))]
     [TestFixture(typeof(LList1))]
     [TestFixture(typeof(LList2))]
-    [TestFixture(typeof(LListR))]
     [TestFixture(typeof(AListR))]
+    [TestFixture(typeof(LListR))]
     public class ComplexTestsNUnit<TPage> where TPage : IList, new()
     {
         IList lst = new TPage();
