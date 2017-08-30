@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,19 @@ namespace PersonalCollection
         int[] arr = new int[10];
         int start = 5;
         int end = 5;
+
+        public IEnumerator<int> GetEnumerator()
+        {
+            for (int i = start; i < end; ++i)
+            {
+                yield return arr[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
         public void AddEnd(int val)
         {

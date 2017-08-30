@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,19 @@ namespace PersonalCollection
                 arr[i] = ini[i];
             }
             top = ini.Length;
+        }
+
+        public IEnumerator<int> GetEnumerator()
+        {
+            for (int i = 0; i < top; i++)
+            {
+                yield return arr[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
 
         public int Size()

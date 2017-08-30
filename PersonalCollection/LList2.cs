@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,21 @@ namespace PersonalCollection
 
         Node start = null;
         Node end = null;
+
+        public IEnumerator<int> GetEnumerator()
+        {
+            Node temp = start;
+            while (temp != null)
+            {
+                yield return temp.val;
+                temp = temp.next;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
         private Node GetNode(int pos)
         {

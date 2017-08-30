@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PersonalCollection
 {
-    public interface IList
+    public interface IList : IEnumerable<int>
     {
         void Init(int[] ini);
         int Size();

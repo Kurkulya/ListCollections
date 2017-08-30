@@ -512,5 +512,22 @@ namespace CollectionTests
             lst.Sort();
             CollectionAssert.AreEqual(res, lst.ToArray());
         }
+
+        [DataTestMethod]
+        [DataRow(null)]
+        [DataRow(new int[] { })]
+        [DataRow(new int[] { 1 })]
+        [DataRow(new int[] { 1, 2 })]
+        [DataRow(new int[] { 1, 2, 3, 4, 5 })]
+        [DataRow(new int[] { 1, 2, 3, 4, 5, 6 })]
+        public void TestForeach(int[] input)
+        {
+            lst.Init(input);
+            int i = 0;
+            foreach (int item in lst)
+            {
+                Assert.AreEqual(item, input[i++]);
+            }
+        }
     }
 }
